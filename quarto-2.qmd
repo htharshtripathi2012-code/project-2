@@ -1,0 +1,27 @@
+---
+title: "Quarto 2"
+author: "Harsh Tripathi"
+format: html
+execute:
+  echo: false
+---
+
+```{r}
+suppressPackageStartupMessages(library(tidyverse))
+
+mpg %>%
+  ggplot(aes(x = displ, y = hwy, color = class, size = cyl)) +
+  geom_point(alpha = 0.75) +
+  geom_smooth(method = "loess", se = FALSE, color = "black", linetype = "dashed") +
+  scale_color_brewer(palette = "Set2") +
+  scale_size_continuous(range = c(2, 6)) +
+  labs(
+    title = "Engine Displacement vs Highway Fuel Economy",
+    subtitle = "mpg dataset: colored by vehicle class and sized by cylinder count",
+    x = "Engine displacement (liters)",
+    y = "Highway miles per gallon",
+    color = "Car class",
+    size = "Cylinder count"
+  ) +
+  theme_minimal(base_size = 14)
+```
